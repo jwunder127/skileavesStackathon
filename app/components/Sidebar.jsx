@@ -33,10 +33,10 @@ const Sidebar = (props) => {
           <div >
             <nav id="sidebar-nav" className="navbar navbar-toggleable-md navbar-inverse bg-inverse navbar-static-top">
               <div id="navcontainer" className="container" >
-                <img src="/skileaves.svg"height="190" width="250" />
+                <img src="/skileaveslogo.svg"height="200" width="290" />
 
               </div>
-              <p style={{textAlign: 'center', color: '#42e5f4'}}>"{pickASaying()}..."</p>
+              <p style={{textAlign: 'center', color: '#42e5f4'}}>{mountains ? `"${pickASaying()}..."`: ''}</p>
             </nav>
             <div id="sidebar">
               <h3 style={{textAlign: 'center'}}> Top Powder Destinations </h3>
@@ -51,7 +51,7 @@ const Sidebar = (props) => {
                         </strong>
                       </div>
                       <div>
-                         skileaves powder index: <span style={{color: props.getColor(score)}}>{score}</span>
+                         ski-leaves powder prediction index: <span style={{color: props.getColor(score)}}>{score}</span>
                       </div>
                   </a>
                 </li>))}
