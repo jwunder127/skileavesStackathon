@@ -20,7 +20,8 @@ const Mountain = db.define('mountains', {
   latitude: Sequelize.FLOAT,
   longitude: Sequelize.FLOAT,
   top_elevation: Sequelize.INTEGER,
-  bottom_elevation: Sequelize.INTEGER
+  bottom_elevation: Sequelize.INTEGER,
+  forecast: Sequelize.JSON
 
 })
 

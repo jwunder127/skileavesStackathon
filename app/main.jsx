@@ -6,7 +6,7 @@ import {connect, Provider} from 'react-redux'
 import store from './store'
 
 
-import MapContainer from './containers/MapContainer'
+import AppContainer from './containers/AppContainer'
 
 import { loadActiveMountains } from './reducers/mountain'
 
@@ -19,7 +19,7 @@ function loadMountains () {
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={MapContainer} onEnter={loadMountains} />
+      <Route path="/" component={AppContainer} onEnter={loadMountains} />
     </Router>
   </Provider>,
   document.getElementById('main')

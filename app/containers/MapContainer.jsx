@@ -1,8 +1,6 @@
-import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
-import mapStyle from '../../public/mapStyle'
 
 import Map from '../components/Map'
 
@@ -17,6 +15,36 @@ class AppContainer extends Component {
   constructor(props){
     super(props)
     console.log('in constructor, here are props:', this.props)
+    this.handleMarkerClick = this.handleMarkerClick.bind(this)
+    this.handleMarkerClose = this.handleMarkerClose.bind(this)
+  }
+
+  handleMarkerClick(targetMarker){
+    this.setState({
+      markers: this.props.mountains.map(marker => {
+        if (marker === targetMarker){
+          return {
+            ...marker,
+            showInfo: true
+          }
+        }
+        return marker
+      })
+    })
+  }
+
+  handleMarkerClose(targetMarker){
+    this.setState({
+      markers: this.props.mountains.map(marker => {
+        if (marker === targetMarker) {
+          return {
+            ...marker,
+            showInfo: false
+          }
+        }
+        return marker
+      })
+    })
   }
 
   render() {
@@ -34,8 +62,8 @@ class AppContainer extends Component {
         onMapLoad={_.noop}
         onMapClick={_.noop}
         markers={this.props.mountains}
-        onMarkerClick={this.props.onMarkerClick}
-        onMarkerRightClick={_.noop}
+        onMarkerClick={this.handleMarkerClick}
+        onMarkerClose={this.handleMarkerClose}
       />
     )
   }

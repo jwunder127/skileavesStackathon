@@ -1,29 +1,43 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
 
 .leaflet-container {
-    height: 550px;
+    height: 100vh;
     width: 100%;
+}
+
+.mountain-heading {
+  text-align: center;
+}
+.nav-item {
+  font-size: 16px;
+}
+
+.navbar {
+  background-color: #4c4c4c;
+  margin: 0px;
+
+}
+.logo {
+    position: absolute;
+    top: 0; bottom:0; left: 0; right:0;
+    margin: auto;
+}
+
+#map {
+  padding: 0px;
+}
+#sidebar {
+  background-color: #918c91;
+  color: #42f468;
+  padding: 0px;
+  height: 100vh;
+  overflow-y: scroll;
+  font: 400 15px/22px 'Open Sans', 'Arial', Sans-serif;
+}
+
+#sidebar-nav {
+  width: 100%;
+}
+
+#navcontainer{
+  width: 100%
 }

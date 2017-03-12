@@ -1,6 +1,7 @@
 # Ignore all node_modules & bower_components
 node_modules/*
 bower_components
+db/seed.js
 
 # ...except the symlink to ourselves.
 !node_modules/APP
