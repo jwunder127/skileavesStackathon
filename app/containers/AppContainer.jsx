@@ -34,7 +34,6 @@ const getColor = (score) => {
 }
 
 
-
 class AppContainer extends Component {
   constructor(props){
     super(props)

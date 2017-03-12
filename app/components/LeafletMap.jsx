@@ -1,15 +1,5 @@
 import React from 'react'
 import { Map, TileLayer, Circle, Popup, ScaleControl} from 'react-leaflet'
-// import L from 'leaflet'
-
-// const getIcon = () => {
-//   return (
-//     L.icon({
-//       iconUrl: '/mountain-emoji.png',
-//       iconSize: [20, 20]
-//     })
-//   )
-// }
 
 
 const darkMatter = 'http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png'
@@ -34,7 +24,7 @@ const LeafletMap = (props) => {
               <div>
                 <h4 className="mountain-heading">{mountain.name}</h4>
                 <p> Current Conditions: {mountain.forecast.currently.summary}</p>
-                <p> Ski Leaves Powder Score: {props.calcSnowScore(mountain.forecast)} </p>
+                <p> Skileaves Powder Index: {props.calcSnowScore(mountain.forecast)} </p>
                 <a href={mountain.official_website}>{mountain.official_website}</a>
               </div>
             </Popup>
