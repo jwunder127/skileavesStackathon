@@ -57,7 +57,7 @@ router.post('/createOneMountain/:id', (req, res, next) => {
       Mountains.create(res)
 
     })
-    .then(mountain => {
+    .then(() => {
       console.log('mountain created')
       res.sendStatus(204)
     })
@@ -100,7 +100,7 @@ router.put('/addWeatherDataToDb', (req, res, next) => {
     })
     })
     .then(() => {
-      res.send(Status(204))
+      res.sendStatus(204)
   })
   .catch(next)
 })
