@@ -33,7 +33,6 @@ const getColor = (score) => {
                   return '#918c91'
 }
 
-
 class AppContainer extends Component {
   constructor(props){
     super(props)
@@ -47,14 +46,14 @@ class AppContainer extends Component {
   resetCenter = (lat, long) => {
     this.setState({
       center: [lat, long],
-      zoom: 9
+      zoom: 10
     })
-}
+  }
 
   render () {
     return (
             <div>
-              <div id="map" className='col-xs-9'>
+              <div id="map" className="col-xs-9">
                 <LeafletMap
                 center={this.state.center}
                 mountains={this.props.mountains}
@@ -63,18 +62,16 @@ class AppContainer extends Component {
                 getColor={getColor}
                 />
               </div>
-              <div id="sidebar" className='col-xs-3'>
+              <div id="sidebar" className="col-xs-3">
                 <Sidebar
                   mountains={this.props.mountains}
                   calcSnowScore={calcSnowScore}
                   getScoreArray={getScoreArray}
                   getColor={getColor}
                   resetCenter={this.resetCenter}
-
                 />
               </div>
             </div>
-
     )
   }
 }
@@ -84,7 +81,6 @@ const mapStateToProps = state => {
     mountains: state.mountain.opMountains
   }
 }
-
 
 
 export default connect(mapStateToProps)(AppContainer)

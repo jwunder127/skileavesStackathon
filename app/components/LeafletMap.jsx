@@ -4,8 +4,8 @@ import { Map, TileLayer, Circle, Popup, ScaleControl} from 'react-leaflet'
 
 const darkMatter = 'http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png'
 
-const LeafletMap = (props) => {
 
+const LeafletMap = (props) => {
 
   return (
       <Map center={props.center} zoom={props.zoom}>
@@ -19,7 +19,7 @@ const LeafletMap = (props) => {
           return (
         <div key={mountain.id} >
 
-          <Circle center={[mountain.latitude, mountain.longitude]} color={props.getColor(props.calcSnowScore(mountain.forecast))} radius={5}>
+          <Circle center={[mountain.latitude, mountain.longitude]} color={props.getColor(props.calcSnowScore(mountain.forecast))} radius={1000} >
             <Popup>
               <div>
                 <h4 className="mountain-heading">{mountain.name}</h4>

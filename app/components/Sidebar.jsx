@@ -2,19 +2,19 @@ import React from 'react'
 
 
 const possibleSaying = [
-'It is certain',
-'It is decidedly so',
-'Without a doubt',
+'It is certain...to snow',
+'It is decidedly snow',
+'Without a doubt, you will ski',
 'Yes definitely',
-'You may rely on it',
-'As I see it, yes',
-'Most likely',
-'Outlook good',
+'You may rely on it, for snow',
+'As I see it, yes it will snow',
+'Most likely to snow',
+'Outlook good, for snow',
 'Yes',
-'Signs point to yes']
+'Signs point to more snow']
 
 const pickASaying = () => {
-  const index = Math.floor(Math.random(0,1)*10)
+  const index = Math.floor(Math.random(0, 1) * 10)
   return possibleSaying[index]
 }
 
@@ -36,7 +36,7 @@ const Sidebar = (props) => {
                 <img src="/skileaveslogo.svg"height="200" width="290" />
 
               </div>
-              <p style={{textAlign: 'center', color: '#42e5f4'}}>{mountains ? `"${pickASaying()}..."`: ''}</p>
+              <p style={{textAlign: 'center', color: '#42e5f4'}}>{mountains ? `"${pickASaying()}..."` : ''}</p>
             </nav>
             <div id="sidebar">
               <h3 style={{textAlign: 'center'}}> Top Powder Destinations </h3>

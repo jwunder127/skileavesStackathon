@@ -3,7 +3,9 @@
 const db = require('APP/db')
 const router = require('express').Router()
 const rp = require('request-promise-any')
-
+const app = require('APP')
+const {env} = app
+const darkSkyApiKey = env["DARK_SKY_API_KEY"]
 const mountainDbURL = 'https://skimap.org/SkiAreas/view/'
 const Mountains = db.models.mountains
 
@@ -17,6 +19,7 @@ router.get('/allMountains', (req, res, next) => {
 })
 
 router.get('/operatingMountains', (req, res, next) => {
+
   Mountains.findAll()
     .then(allMountains => {
       res.json(allMountains.filter(mountain => mountain.operating_status === 'Operating' && mountain.latitude))
@@ -64,7 +67,7 @@ router.post('/createOneMountain/:id', (req, res, next) => {
 
 router.get('/getWeatherData/:lat/:long', (req, res, next) => {
   rp({
-    url: `https://api.darksky.net/forecast/{{INSERT API KEY}}/${req.params.lat},${req.params.long}`,
+    url: `https://api.darksky.net/forecast/${darkSkyApiKey}/${req.params.lat},${req.params.long}`,
     json: true
   })
     .then(weather => {
@@ -73,11 +76,12 @@ router.get('/getWeatherData/:lat/:long', (req, res, next) => {
     .catch(next)
 })
 
-//update db with weather data (currently disabled)
-router.post('/addWeatherDataToDb', (req, res, next) => {
+//update db with weather data
+router.put('/addWeatherDataToDb', (req, res, next) => {
   Mountains.findAll({
     where: {
-      id: {$between: []},
+      //comment in id to update specific mountains
+      // id: {$between: [1, 20]},
       latitude: {$not: null},
       operating_status: 'Operating'
     }
@@ -86,7 +90,7 @@ router.post('/addWeatherDataToDb', (req, res, next) => {
 
     mountains.forEach(mountain => {
       rp({
-      url: `https://api.darksky.net/forecast/6c3771ead6495db195fa2be830fc2b2f/${mountain.latitude},${mountain.longitude}`,
+      url: `https://api.darksky.net/forecast/${darkSkyApiKey}/${mountain.latitude},${mountain.longitude}`,
       json: true
       })
       .then(forecast => {
@@ -96,17 +100,7 @@ router.post('/addWeatherDataToDb', (req, res, next) => {
     })
     })
     .then(() => {
-      res.sendStatus(204)
+      res.send(Status(204))
   })
   .catch(next)
 })
-
-
-  //     Promise.all(mountainArr)
-  //     .then(mountainArr => {
-  //       console.log(mountainArr)
-  //       res.json(mountainArr)
-  //       })
-  //     })
-  //   })
-  // })
