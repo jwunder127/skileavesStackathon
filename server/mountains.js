@@ -104,3 +104,31 @@ router.put('/addWeatherDataToDb', (req, res, next) => {
   })
   .catch(next)
 })
+
+//update single mountain
+router.put('/addWeatherDataToDb/:id', (req, res, next) => {
+  Mountains.findAll({
+    where: {
+      id: req.params.id,
+      latitude: {$not: null},
+      operating_status: 'Operating'
+    }
+  })
+  .then(mountains => {
+
+    mountains.forEach(mountain => {
+      rp({
+      url: `https://api.darksky.net/forecast/${darkSkyApiKey}/${mountain.latitude},${mountain.longitude}`,
+      json: true
+      })
+      .then(forecast => {
+        mountain.update({forecast: forecast})
+        return mountain.save()
+      })
+    })
+    })
+    .then(() => {
+      res.sendStatus(204)
+  })
+  .catch(next)
+})
