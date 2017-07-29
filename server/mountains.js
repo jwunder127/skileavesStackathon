@@ -105,7 +105,7 @@ router.put('/addWeatherDataToDb', (req, res, next) => {
   .catch(next)
 })
 
-//update single mountain
+//update single mountain forecast
 router.put('/addWeatherDataToDb/:id', (req, res, next) => {
   Mountains.findAll({
     where: {
