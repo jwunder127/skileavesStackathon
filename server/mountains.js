@@ -132,3 +132,16 @@ router.put('/addWeatherDataToDb/:id', (req, res, next) => {
   })
   .catch(next)
 })
+
+//get update date
+
+router.get('/getLatestUpdateTime', (req, res, next) => {
+  Mountains.findOne({
+    where: {
+      id: 1
+    }
+  })
+  .then((mountain) => {
+    res.json(Date.getUTCDate(mountain.updated_at));
+  } )
+})
